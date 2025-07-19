@@ -1,0 +1,103 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Свадьба — Бахтовар & Шохина</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Georgia', serif;
+      color: #fff;
+      text-align: center;
+      background: url('photo_2025-07-18_03-40-48.jpg') no-repeat center center fixed;
+      background-size: cover;
+    }
+
+    .overlay {
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 60px 20px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    h1 {
+      font-size: 38px;
+      margin-bottom: 10px;
+      font-family: 'Georgia', serif;
+      font-weight: normal;
+    }
+
+    .names {
+      font-size: 28px;
+      font-weight: bold;
+      margin: 20px 0;
+    }
+
+    .info, .location, .timer {
+      font-size: 20px;
+      margin: 10px 0;
+    }
+
+    .line {
+      margin: 20px 0;
+      border-top: 1px solid rgba(255,255,255,0.3);
+      width: 60%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    @media screen and (max-width: 600px) {
+      h1 {
+        font-size: 30px;
+      }
+      .names {
+        font-size: 22px;
+      }
+      .info, .location, .timer {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay">
+    <h1>ПРИГЛАШЕНИЕ НА СВАДЬБУ</h1>
+    <div class="names">Хусенов Бахтовар<br>&<br>Муминова Шохина</div>
+    <div class="line"></div>
+    <div class="info">🗓 Дата: 26 июля 2025<br>🕔 Время: 18:00</div>
+    <div class="location">📍 Согдийская область, г. Канибадам<br>ул. Камоли Худжанди, 1А<br>ресторан «Шохон»</div>
+    <div class="timer" id="countdown">До свадьбы осталось: ...</div>
+    <div class="line"></div>
+  </div>
+
+  <script>
+    const targetDate = new Date("2025-07-26T17:00:00+0500").getTime();
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      if (distance < 0) {
+        document.getElementById("countdown").innerHTML = "Свадьба уже началась!";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("countdown").innerHTML =
+        `До свадьбы осталось: ${days} дн ${hours} ч ${minutes} мин ${seconds} сек`;
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
+</body>
+</html>
